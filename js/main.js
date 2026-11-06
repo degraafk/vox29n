@@ -34,19 +34,39 @@
     }, { threshold: 0, rootMargin: '-1px 0px 0px 0px' }).observe(portada);
   }
 
-  /* ---------- Enlace activo en la barra ---------- */
-  const enlaces = [...document.querySelectorAll('.barra__lista a')];
+  /* ---------- Cinta de prioridades en movimiento continuo ---------- */
+  const ventana = document.querySelector('.barra__ventana');
+  const pista = document.querySelector('.barra__pista');
+  const lista = document.querySelector('.barra__lista');
+  if (ventana && pista && lista && !reduce) {
+    const originales = [...lista.children];
+    const duplicar = (nodo, oculto) => {
+      const c = nodo.cloneNode(true);
+      if (oculto) { c.setAttribute('aria-hidden', 'true'); c.querySelectorAll('a').forEach(a => a.tabIndex = -1); }
+      return c;
+    };
+    // Rellenar el grupo hasta cubrir al menos el ancho de la pantalla
+    let guardia = 0;
+    while (lista.scrollWidth < window.innerWidth * 1.1 && guardia++ < 8) {
+      originales.forEach(li => lista.appendChild(duplicar(li, true)));
+    }
+    pista.appendChild(duplicar(lista, true));
+    ventana.classList.add('en-marcha');
+    pista.style.setProperty('--dur', Math.round(lista.scrollWidth / 55) + 's');
+    pista.classList.add('en-marcha');
+  }
+
+  /* ---------- Enlace activo en la cinta ---------- */
   if ('IntersectionObserver' in window) {
-    const porId = new Map(enlaces.map(a => [a.getAttribute('href').slice(1), a]));
-    const marcar = id => enlaces.forEach(a => a.setAttribute('aria-current', String(porId.get(id) === a)));
-    const io = new IntersectionObserver(entradas => {
-      entradas.forEach(e => { if (e.isIntersecting) marcar(e.target.id); });
+    const marcar = id => document.querySelectorAll('.barra__lista a').forEach(a =>
+      a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + id)));
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting) marcar(e.target.id); });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    porId.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
-    // Fuera de las cinco secciones no se marca ninguna
-    const limpiar = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) enlaces.forEach(a => a.setAttribute('aria-current', 'false'));
-    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['prioridad-nacional','desregulacion','remigracion','menos-irpf','vivienda-publica'].forEach(id => {
+      const el = document.getElementById(id); if (el) io.observe(el);
+    });
+    const limpiar = new IntersectionObserver(([e]) => { if (e.isIntersecting) marcar(''); }, { rootMargin: '-45% 0px -50% 0px' });
     ['inicio', 'participa'].forEach(id => { const el = document.getElementById(id); if (el) limpiar.observe(el); });
   }
 
@@ -87,15 +107,7 @@
       .fromTo('.portada__img', { scale: 1.08 }, { scale: 1, duration: 2.2 }, 0)
       .from('.portada__logo', { y: -12, opacity: 0, duration: .8 }, .7);
 
-    // 2. Parallax suave de la foto al bajar
-    if (window.matchMedia('(min-width: 701px)').matches) {
-      gsap.to('.portada__img', {
-        yPercent: 6.5, ease: 'none',
-        scrollTrigger: { trigger: '.portada', start: 'top top', end: 'bottom top', scrub: true },
-      });
-    }
-
-    // 3. Manifiesto: las palabras se encienden al hacer scroll
+    // 2. Manifiesto: las palabras se encienden al hacer scroll
     const texto = document.querySelector('[data-scrub]');
     if (texto) {
       const palabras = texto.textContent.trim().split(/\s+/);
