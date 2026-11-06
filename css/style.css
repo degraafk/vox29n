@@ -7,7 +7,7 @@
   --linea: #d9e2dd;
   --suave: #4b5c54;
 
-  --gutter: clamp(20px, 3.4vw, 64px);
+  --gutter: clamp(28px, 7.5vw, 150px);
   --barra-h: 58px;
 
   --f-titulo: "Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -75,35 +75,26 @@ h1, h2, h3, p { margin: 0; }
 }
 .portada__logo:hover { transform: scale(1.04); }
 
-/* ---------- Barra fija ---------- */
-.barra {
-  position: sticky; top: 0; z-index: 50;
-  height: var(--barra-h);
-  display: flex; align-items: center; gap: clamp(16px, 3vw, 48px);
+/* ---------- Cinta de prioridades (bajo la portada) ---------- */
+.cinta {
+  height: var(--barra-h); display: flex; align-items: center;
   padding: 0 var(--gutter);
   background: var(--negro); color: var(--blanco);
 }
 
-.barra__logo {
-  flex: 0 0 auto; width: 0; opacity: 0; overflow: hidden;
-  transition: width .35s ease, opacity .35s ease;
-}
-.barra__logo img { width: 52px; max-width: none; }
-.barra.es-fija .barra__logo { width: 52px; opacity: 1; }
+.cinta__ventana { flex: 1 1 auto; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.cinta__ventana::-webkit-scrollbar { display: none; }
+.cinta__pista { display: flex; width: max-content; }
 
-.barra__ventana { flex: 1 1 auto; min-width: 0; overflow-x: auto; scrollbar-width: none; }
-.barra__ventana::-webkit-scrollbar { display: none; }
-.barra__pista { display: flex; width: max-content; }
+.cinta__lista { display: flex; flex: none; gap: clamp(40px, 6vw, 110px); padding-right: clamp(40px, 6vw, 110px); }
 
-.barra__lista { display: flex; flex: none; gap: clamp(40px, 6vw, 110px); padding-right: clamp(40px, 6vw, 110px); }
-
-.barra__pista.en-marcha { animation: marquesina var(--dur, 40s) linear infinite; }
-.barra__ventana.en-marcha { overflow: hidden; }
-.barra__ventana:hover .barra__pista,
-.barra__ventana:focus-within .barra__pista { animation-play-state: paused; }
+.cinta__pista.en-marcha { animation: marquesina var(--dur, 40s) linear infinite; }
+.cinta__ventana.en-marcha { overflow: hidden; }
+.cinta__ventana:hover .cinta__pista,
+.cinta__ventana:focus-within .cinta__pista { animation-play-state: paused; }
 @keyframes marquesina { to { transform: translateX(-50%); } }
 
-.barra__lista a {
+.cinta__lista a {
   position: relative; display: inline-block; padding: 6px 0; white-space: nowrap;
   font-family: var(--f-titulo); font-style: italic; font-weight: 500;
   font-stretch: 112%; font-size: clamp(.9rem, 1.45vw, 1.35rem);
@@ -111,12 +102,52 @@ h1, h2, h3, p { margin: 0; }
   letter-spacing: .01em;
   transition: transform .25s ease;
 }
-.barra__lista a::after {
+.cinta__lista a::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
   background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
 }
-.barra__lista a:hover { transform: translateX(4px); }
-.barra__lista a[aria-current="true"]::after { transform: scaleX(1); }
+.cinta__lista a:hover { transform: translateX(4px); }
+.cinta__lista a[aria-current="true"]::after { transform: scaleX(1); }
+
+.cinta__ventana { overflow: hidden; }
+
+/* ---------- Cabecera (aparece al salir de la portada) ---------- */
+.cabecera {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  height: var(--barra-h); display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--gutter);
+  background: var(--negro); color: var(--blanco);
+  transform: translateY(-100%); visibility: hidden;
+  transition: transform .45s cubic-bezier(.2,.7,.2,1), visibility 0s linear .45s;
+}
+.cabecera.es-visible { transform: none; visibility: visible; transition-delay: 0s; }
+
+.cabecera__logo { display: block; width: 58px; transition: transform .3s ease; }
+.cabecera__logo:hover { transform: scale(1.04); }
+
+.cabecera__menu { display: flex; align-items: center; gap: clamp(18px, 3vw, 48px); }
+.cabecera__menu a {
+  position: relative; display: inline-block; padding: 6px 0; text-decoration: none;
+  font-family: var(--f-titulo); font-weight: 600; font-size: 1rem;
+  transition: transform .25s ease;
+}
+.cabecera__menu a:not(.cabecera__boton)::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+}
+.cabecera__menu a[aria-current="true"]::after { transform: scaleX(1); }
+.cabecera__menu a:hover { transform: translateY(-2px); }
+.cabecera__boton {
+  padding: 9px 20px !important; border-radius: 8px;
+  background: var(--blanco); color: var(--verde-profundo);
+}
+
+@media (max-width: 560px) {
+  .cabecera__logo { width: 44px; }
+  .cabecera__menu { gap: 14px; }
+  .cabecera__menu a { font-size: .88rem; }
+  .cabecera__boton { padding: 8px 12px !important; }
+}
 
 /* ---------- Manifiesto ---------- */
 .manifiesto { padding: clamp(80px, 16vh, 180px) var(--gutter); }
@@ -198,6 +229,12 @@ h1, h2, h3, p { margin: 0; }
   .panel__cuerpo { grid-template-columns: 1fr; }
   .panel__lead { max-width: none; }
 }
+
+.europa { padding: clamp(72px, 14vh, 150px) var(--gutter); background: var(--verde); color: var(--blanco); position: relative; z-index: 1; }
+.europa h2 { font-family: var(--f-titulo); font-weight: 800; font-size: clamp(2.8rem, 8.4vw, 8.6rem); line-height: 1; text-transform: uppercase; }
+.europa__cuerpo { margin-top: clamp(32px, 7vh, 80px); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 6vw, 110px); align-items: start; }
+.europa__lead { font-size: clamp(1.2rem, 1.9vw, 1.7rem); line-height: 1.45; max-width: 34ch; }
+@media (max-width: 899px) { .europa h2 { font-size: clamp(2.1rem, 8.4vw, 8.6rem); } .europa__cuerpo { grid-template-columns: 1fr; } .europa__lead { max-width: none; } }
 
 /* ---------- Participa ---------- */
 .participa { padding: clamp(72px, 14vh, 150px) var(--gutter); background: var(--blanco); position: relative; z-index: 1; }

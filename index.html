@@ -12,7 +12,7 @@
   <meta property="og:description" content="Elecciones generales, 29 de noviembre.">
   <meta property="og:image" content="assets/portada-1400.jpg">
   <meta property="og:type" content="website">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-vox.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +21,19 @@
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- CABECERA: entra desde arriba al salir de la portada -->
+  <nav class="cabecera" id="cabecera" aria-label="Principal">
+    <a class="cabecera__logo" href="#inicio" aria-label="VOX, inicio">
+      <img src="assets/logo-vox-blanco.svg" alt="" width="2273" height="1104">
+    </a>
+    <ul class="cabecera__menu">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#programa">Programa</a></li>
+      <li><a href="#europa">Europa</a></li>
+      <li><a class="cabecera__boton" href="#participa">Afíliate</a></li>
+    </ul>
+  </nav>
 
   <!-- PORTADA -->
   <header class="portada" id="inicio">
@@ -33,19 +46,16 @@
          fetchpriority="high">
     <div class="portada__velo" aria-hidden="true"></div>
     <a class="portada__logo" href="#inicio" aria-label="VOX, inicio">
-      <img src="assets/logo-blanco.svg" alt="VOX" width="2268" height="1099">
+      <img src="assets/logo-vox-blanco.svg" alt="VOX" width="2273" height="1104">
     </a>
     <h1 class="sr-only">Salvar España</h1>
   </header>
 
-  <!-- BARRA DE NAVEGACIÓN (se queda fija al bajar) -->
-  <nav class="barra" aria-label="Principal">
-    <a class="barra__logo" href="#inicio" aria-label="VOX, inicio">
-      <img src="assets/logo-blanco.svg" alt="" width="2268" height="1099">
-    </a>
-    <div class="barra__ventana">
-      <div class="barra__pista">
-        <ul class="barra__lista">
+  <!-- CINTA DE PRIORIDADES (parte de la portada, no se queda fija) -->
+  <nav class="cinta" aria-label="Prioridades del programa">
+    <div class="cinta__ventana">
+      <div class="cinta__pista">
+        <ul class="cinta__lista">
           <li><a href="#prioridad-nacional">Prioridad nacional</a></li>
           <li><a href="#desregulacion">Desregulación</a></li>
           <li><a href="#remigracion">Remigración</a></li>
@@ -59,13 +69,13 @@
   <main id="contenido">
 
     <!-- MANIFIESTO -->
-    <section class="manifiesto" aria-labelledby="manifiesto-titulo">
+    <section class="manifiesto" id="manifiesto" aria-labelledby="manifiesto-titulo">
       <h2 class="sr-only" id="manifiesto-titulo">Lo que está en juego</h2>
       <p class="manifiesto__texto" data-scrub>Vivienda para los jóvenes. Seguridad para las mujeres. Futuro para el campo. Servicios públicos que funcionen. El 29 de noviembre decidimos si España sigue por el mismo camino o recupera el rumbo.</p>
     </section>
 
     <!-- CUENTA ATRÁS -->
-    <section class="cuenta" aria-labelledby="cuenta-titulo">
+    <section class="cuenta" id="cuenta" aria-labelledby="cuenta-titulo">
       <div class="cuenta__cabecera">
         <h2 id="cuenta-titulo">Faltan para el 29 de noviembre</h2>
         <p>Elecciones generales. Congreso y Senado.</p>
@@ -78,7 +88,8 @@
       </div>
     </section>
 
-    <!-- LAS CINCO PRIORIDADES (paneles apilados) -->
+    <!-- PROGRAMA: LAS CINCO PRIORIDADES (paneles apilados) -->
+    <div class="programa" id="programa">
     <section class="panel panel--profundo" id="prioridad-nacional" aria-labelledby="t-pn">
       <div class="panel__in">
         <h2 id="t-pn">Prioridad nacional</h2>
@@ -149,13 +160,30 @@
       </div>
     </section>
 
+    </div>
+
+    <!-- EUROPA -->
+    <section class="europa" id="europa" aria-labelledby="t-eu">
+      <div class="europa__in">
+        <h2 id="t-eu">Europa</h2>
+        <div class="europa__cuerpo">
+          <p class="europa__lead">Cooperación entre naciones soberanas. Lo que se decide sobre España se decide en España.</p>
+          <ul class="medidas">
+            <li><h3>Fronteras exteriores seguras</h3><p>Una Europa que protege su frontera común y deja a cada país decidir quién entra.</p></li>
+            <li><h3>Menos normas desde Bruselas</h3><p>Más margen para que España legisle según sus intereses.</p></li>
+            <li><h3>Defensa de los sectores españoles</h3><p>Campo, pesca e industria primero en cada negociación.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- PARTICIPA -->
     <section class="participa" id="participa" aria-labelledby="t-pa">
       <div class="participa__in">
         <div class="participa__texto">
           <h2 id="t-pa">Participa en la campaña</h2>
           <p>Afíliate, ayuda como voluntario o vigila tu mesa electoral como interventor. Cada vecino cuenta.</p>
-          <img class="participa__logo" src="assets/logo-verde.svg" alt="" width="2268" height="1099">
+          <img class="participa__logo" src="assets/logo-vox-verde.svg" alt="" width="2273" height="1104">
         </div>
 
         <!-- DEMO: este formulario no envía datos. Conéctalo a tu backend o a un servicio de formularios. -->
@@ -190,7 +218,7 @@
 
   <footer class="pie">
     <div class="pie__in">
-      <img class="pie__logo" src="assets/logo-blanco.svg" alt="VOX" width="2268" height="1099">
+      <img class="pie__logo" src="assets/logo-vox-blanco.svg" alt="VOX" width="2273" height="1104">
       <div class="pie__cols">
         <div>
           <h2>Programa</h2>
@@ -200,6 +228,7 @@
             <li><a href="#remigracion">Remigración</a></li>
             <li><a href="#menos-irpf">Menos IRPF</a></li>
             <li><a href="#vivienda-publica">Vivienda pública</a></li>
+            <li><a href="#europa">Europa</a></li>
           </ul>
         </div>
         <div>

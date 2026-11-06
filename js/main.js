@@ -25,19 +25,19 @@
   let temporizador = setInterval(pintarReloj, 1000);
   pintarReloj();
 
-  /* ---------- Barra fija: aparece el logo al dejar atrás la portada ---------- */
-  const barra = document.querySelector('.barra');
-  const portada = document.querySelector('.portada');
-  if (barra && portada && 'IntersectionObserver' in window) {
+  /* ---------- Cabecera: entra al salir de la portada y su cinta ---------- */
+  const cabecera = document.getElementById('cabecera');
+  const cinta = document.querySelector('.cinta');
+  if (cabecera && cinta && 'IntersectionObserver' in window) {
     new IntersectionObserver(([e]) => {
-      barra.classList.toggle('es-fija', !e.isIntersecting);
-    }, { threshold: 0, rootMargin: '-1px 0px 0px 0px' }).observe(portada);
+      cabecera.classList.toggle('es-visible', !e.isIntersecting && e.boundingClientRect.top < 0);
+    }, { threshold: 0 }).observe(cinta);
   }
 
   /* ---------- Cinta de prioridades en movimiento continuo ---------- */
-  const ventana = document.querySelector('.barra__ventana');
-  const pista = document.querySelector('.barra__pista');
-  const lista = document.querySelector('.barra__lista');
+  const ventana = document.querySelector('.cinta__ventana');
+  const pista = document.querySelector('.cinta__pista');
+  const lista = document.querySelector('.cinta__lista');
   if (ventana && pista && lista && !reduce) {
     const originales = [...lista.children];
     const duplicar = (nodo, oculto) => {
@@ -56,18 +56,22 @@
     pista.classList.add('en-marcha');
   }
 
-  /* ---------- Enlace activo en la cinta ---------- */
+  /* ---------- Enlaces activos ---------- */
   if ('IntersectionObserver' in window) {
-    const marcar = id => document.querySelectorAll('.barra__lista a').forEach(a =>
+    const marcarCinta = id => document.querySelectorAll('.cinta__lista a').forEach(a =>
       a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + id)));
-    const io = new IntersectionObserver(es => {
-      es.forEach(e => { if (e.isIntersecting) marcar(e.target.id); });
-    }, { rootMargin: '-45% 0px -50% 0px' });
+    const marcarMenu = id => document.querySelectorAll('.cabecera__menu a:not(.cabecera__boton)').forEach(a =>
+      a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + id)));
+    const banda = { rootMargin: '-45% 0px -50% 0px' };
+
+    const ioCinta = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) marcarCinta(e.target.id); }), banda);
     ['prioridad-nacional','desregulacion','remigracion','menos-irpf','vivienda-publica'].forEach(id => {
-      const el = document.getElementById(id); if (el) io.observe(el);
+      const el = document.getElementById(id); if (el) ioCinta.observe(el);
     });
-    const limpiar = new IntersectionObserver(([e]) => { if (e.isIntersecting) marcar(''); }, { rootMargin: '-45% 0px -50% 0px' });
-    ['inicio', 'participa'].forEach(id => { const el = document.getElementById(id); if (el) limpiar.observe(el); });
+
+    const mapa = { inicio: 'inicio', manifiesto: 'inicio', cuenta: 'inicio', programa: 'programa', europa: 'europa', participa: '' };
+    const ioMenu = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) marcarMenu(mapa[e.target.id]); }), banda);
+    Object.keys(mapa).forEach(id => { const el = document.getElementById(id); if (el) ioMenu.observe(el); });
   }
 
   /* ---------- Provincias ---------- */
