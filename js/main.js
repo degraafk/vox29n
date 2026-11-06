@@ -25,14 +25,21 @@
   let temporizador = setInterval(pintarReloj, 1000);
   pintarReloj();
 
-  /* ---------- Cabecera: entra al salir de la portada y su cinta ---------- */
+  /* ---------- Logo y cabecera ligados al scroll ---------- */
   const cabecera = document.getElementById('cabecera');
-  const cinta = document.querySelector('.cinta');
-  if (cabecera && cinta && 'IntersectionObserver' in window) {
-    new IntersectionObserver(([e]) => {
-      cabecera.classList.toggle('es-visible', !e.isIntersecting && e.boundingClientRect.top < 0);
-    }, { threshold: 0 }).observe(cinta);
+  const raiz = document.documentElement;
+  const RECORRIDO = 90; // píxeles de scroll hasta que el logo queda acoplado
+  let esperando = false;
+  function actualizarScroll() {
+    esperando = false;
+    const p = Math.min(1, Math.max(0, window.scrollY / RECORRIDO));
+    raiz.style.setProperty('--p', p.toFixed(3));
+    if (cabecera) cabecera.style.visibility = p > 0 ? 'visible' : 'hidden';
   }
+  window.addEventListener('scroll', () => {
+    if (!esperando) { esperando = true; requestAnimationFrame(actualizarScroll); }
+  }, { passive: true });
+  actualizarScroll();
 
   /* ---------- Cinta de prioridades en movimiento continuo ---------- */
   const ventana = document.querySelector('.cinta__ventana');
@@ -109,7 +116,7 @@
     const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
     tl.fromTo('.portada__velo', { opacity: 1 }, { opacity: 0, duration: 1.3 }, 0)
       .fromTo('.portada__img', { scale: 1.08 }, { scale: 1, duration: 2.2 }, 0)
-      .from('.portada__logo', { y: -12, opacity: 0, duration: .8 }, .7);
+      .from('.logo-vivo img', { opacity: 0, duration: .8 }, .7);
 
     // 2. Manifiesto: las palabras se encienden al hacer scroll
     const texto = document.querySelector('[data-scrub]');
