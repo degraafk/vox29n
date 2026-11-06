@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VOX | Salvar España. Elecciones generales 29 de noviembre</title>
+  <meta name="description" content="Prioridad nacional, desregulación, remigración, menos IRPF y vivienda pública. El 29 de noviembre, salvar España.">
+  <meta name="theme-color" content="#005838">
+  <!-- Propuesta de diseño: sin indexar mientras sea una maqueta -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="VOX | Salvar España">
+  <meta property="og:description" content="Elecciones generales, 29 de noviembre.">
+  <meta property="og:image" content="assets/portada-1400.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,75..125,100..900;1,75..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..800;1,8..60,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- PORTADA -->
+  <header class="portada" id="inicio">
+    <img class="portada__img"
+         src="assets/portada-2576.jpg"
+         srcset="assets/portada-800.jpg 800w, assets/portada-1400.jpg 1400w, assets/portada-2576.jpg 2576w"
+         sizes="(max-width: 700px) 320vw, 100vw"
+         width="2576" height="1131"
+         alt="Santiago Abascal, de espaldas, se dirige a una plaza llena de gente en un acto de VOX"
+         fetchpriority="high">
+    <div class="portada__velo" aria-hidden="true"></div>
+    <a class="portada__logo" href="#inicio" aria-label="VOX, inicio">
+      <img src="assets/logo-blanco.svg" alt="VOX" width="2257" height="964">
+    </a>
+    <h1 class="sr-only">Salvar España</h1>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN (se queda fija al bajar) -->
+  <nav class="barra" aria-label="Principal">
+    <a class="barra__logo" href="#inicio" aria-label="VOX, inicio">
+      <img src="assets/logo-blanco.svg" alt="" width="2257" height="964">
+    </a>
+    <ul class="barra__lista">
+      <li><a href="#prioridad-nacional">Prioridad nacional</a></li>
+      <li><a href="#desregulacion">Desregulación</a></li>
+      <li><a href="#remigracion">Remigración</a></li>
+      <li><a href="#menos-irpf">Menos IRPF</a></li>
+      <li><a href="#vivienda-publica">Vivienda pública</a></li>
+    </ul>
+  </nav>
+
+  <main id="contenido">
+
+    <!-- MANIFIESTO -->
+    <section class="manifiesto" aria-labelledby="manifiesto-titulo">
+      <h2 class="sr-only" id="manifiesto-titulo">Lo que está en juego</h2>
+      <p class="manifiesto__texto" data-scrub>Vivienda para los jóvenes. Seguridad para las mujeres. Futuro para el campo. Servicios públicos que funcionen. El 29 de noviembre decidimos si España sigue por el mismo camino o recupera el rumbo.</p>
+    </section>
+
+    <!-- CUENTA ATRÁS -->
+    <section class="cuenta" aria-labelledby="cuenta-titulo">
+      <div class="cuenta__cabecera">
+        <h2 id="cuenta-titulo">Faltan para el 29 de noviembre</h2>
+        <p>Elecciones generales. Congreso y Senado.</p>
+      </div>
+      <div class="cuenta__reloj" id="reloj" role="timer" aria-live="off">
+        <div><span class="cuenta__num" data-u="d">--</span><span class="cuenta__u">días</span></div>
+        <div><span class="cuenta__num" data-u="h">--</span><span class="cuenta__u">horas</span></div>
+        <div><span class="cuenta__num" data-u="m">--</span><span class="cuenta__u">minutos</span></div>
+        <div><span class="cuenta__num" data-u="s">--</span><span class="cuenta__u">segundos</span></div>
+      </div>
+    </section>
+
+    <!-- LAS CINCO PRIORIDADES (paneles apilados) -->
+    <section class="panel panel--profundo" id="prioridad-nacional" aria-labelledby="t-pn">
+      <div class="panel__in">
+        <h2 id="t-pn">Prioridad nacional</h2>
+        <div class="panel__cuerpo">
+          <p class="panel__lead">Los españoles, primero. Las ayudas, la vivienda protegida y los servicios públicos se pagan entre todos y deben llegar antes a quienes sostienen España.</p>
+          <ul class="medidas">
+            <li><h3>Vivienda protegida y alquiler social</h3><p>Acceso con prioridad para los españoles.</p></li>
+            <li><h3>Ayudas sociales</h3><p>Los recursos públicos se asignan antes a quienes llevan años contribuyendo.</p></li>
+            <li><h3>Guarderías y servicios públicos</h3><p>Las plazas disponibles, primero para las familias españolas.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel panel--blanco" id="desregulacion" aria-labelledby="t-de">
+      <div class="panel__in">
+        <h2 id="t-de">Desregulación</h2>
+        <div class="panel__cuerpo">
+          <p class="panel__lead">Menos trabas para quien quiere producir, construir y emprender. Un Estado que estorba menos y que cuesta menos.</p>
+          <ul class="medidas">
+            <li><h3>Menos burocracia para autónomos y pymes</h3><p>Trámites más cortos, licencias más ágiles, una sola ventanilla.</p></li>
+            <li><h3>Suelo para construir</h3><p>Liberar suelo para que haya más vivienda y a mejor precio.</p></li>
+            <li><h3>Un campo que pueda trabajar</h3><p>Menos normas que asfixian a agricultores y ganaderos.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel panel--verde" id="remigracion" aria-labelledby="t-re">
+      <div class="panel__in">
+        <h2 id="t-re">Remigración</h2>
+        <div class="panel__cuerpo">
+          <p class="panel__lead">Orden en las fronteras y seguridad en las calles. Una política migratoria que se rige por lo que España puede y quiere asumir.</p>
+          <ul class="medidas">
+            <li><h3>Control de las fronteras</h3><p>Entrada ordenada y salida de quienes residen de forma ilegal.</p></li>
+            <li><h3>Expulsión de delincuentes extranjeros</h3><p>Quien comete un delito grave y no es español, fuera.</p></li>
+            <li><h3>Cambios legales en España y en Europa</h3><p>Reformas nacionales y europeas para hacerlo posible.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel panel--blanco" id="menos-irpf" aria-labelledby="t-ir">
+      <div class="panel__in">
+        <h2 id="t-ir">Menos IRPF</h2>
+        <div class="panel__cuerpo">
+          <p class="panel__lead">Quien trabaja se queda con más de lo que gana. Bajar impuestos donde más se nota: jóvenes, familias y medio rural.</p>
+          <ul class="medidas">
+            <li><h3>Rebaja del IRPF</h3><p>Para que el primer sueldo no se evapore antes de llegar.</p></li>
+            <li><h3>Ventajas fiscales para las familias</h3><p>Criar hijos en España no puede salir caro.</p></li>
+            <li><h3>Incentivos para vivir en el medio rural</h3><p>Fiscalidad que ayuda a quedarse, y a volver.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel panel--profundo" id="vivienda-publica" aria-labelledby="t-vi">
+      <div class="panel__in">
+        <h2 id="t-vi">Vivienda pública</h2>
+        <div class="panel__cuerpo">
+          <p class="panel__lead">Construir vivienda social de forma masiva y adjudicarla con prioridad nacional. Que independizarse deje de ser un lujo.</p>
+          <ul class="medidas">
+            <li><h3>Plan de vivienda social</h3><p>Construcción masiva sobre suelo público disponible.</p></li>
+            <li><h3>Adjudicación con prioridad nacional</h3><p>Los españoles, los primeros de la lista.</p></li>
+            <li><h3>Alquiler asequible y de larga duración</h3><p>Incentivos fiscales y deducciones en el IRPF para jóvenes.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTICIPA -->
+    <section class="participa" id="participa" aria-labelledby="t-pa">
+      <div class="participa__in">
+        <div class="participa__texto">
+          <h2 id="t-pa">Participa en la campaña</h2>
+          <p>Afíliate, ayuda como voluntario o vigila tu mesa electoral como interventor. Cada vecino cuenta.</p>
+          <img class="participa__logo" src="assets/logo-verde.svg" alt="" width="2257" height="964">
+        </div>
+
+        <!-- DEMO: este formulario no envía datos. Conéctalo a tu backend o a un servicio de formularios. -->
+        <form class="form" id="form-participa" novalidate>
+          <div class="campo">
+            <label for="nombre">Nombre y apellidos</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+          </div>
+          <div class="campo">
+            <label for="email">Correo electrónico</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="campo">
+            <label for="provincia">Provincia</label>
+            <select id="provincia" name="provincia" required>
+              <option value="">Elige tu provincia</option>
+            </select>
+          </div>
+          <fieldset class="campo opciones">
+            <legend>Quiero</legend>
+            <label><input type="radio" name="rol" value="afiliado" checked> Afiliarme</label>
+            <label><input type="radio" name="rol" value="voluntario"> Ser voluntario</label>
+            <label><input type="radio" name="rol" value="interventor"> Ser interventor</label>
+          </fieldset>
+          <label class="acepto"><input type="checkbox" name="acepto" required> He leído y acepto la política de privacidad.</label>
+          <button class="boton" type="submit">Enviar</button>
+          <p class="form__estado" id="form-estado" role="status" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="pie__in">
+      <img class="pie__logo" src="assets/logo-blanco.svg" alt="VOX" width="2257" height="964">
+      <div class="pie__cols">
+        <div>
+          <h2>Programa</h2>
+          <ul>
+            <li><a href="#prioridad-nacional">Prioridad nacional</a></li>
+            <li><a href="#desregulacion">Desregulación</a></li>
+            <li><a href="#remigracion">Remigración</a></li>
+            <li><a href="#menos-irpf">Menos IRPF</a></li>
+            <li><a href="#vivienda-publica">Vivienda pública</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Síguenos</h2>
+          <ul>
+            <li><a href="#">X</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Telegram</a></li>
+            <li><a href="#">YouTube</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Legal</h2>
+          <ul>
+            <li><a href="#">Aviso legal</a></li>
+            <li><a href="#">Privacidad</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="pie__nota">Propuesta de diseño. Sitio no oficial.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
